@@ -78,14 +78,14 @@ order by 1,2
 Select Location, date, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
-group by location, population
+group by location, population, date
 order by HighestCases Desc, HighestInfPerc Desc
 
 -- order by Highest Infected Percentage
 Select Location, date, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
-group by location, population
+group by location, population, date
 order by HighestInfPerc Desc, HighestCases Desc
 
 -- Highest Death Count based on the Population size
