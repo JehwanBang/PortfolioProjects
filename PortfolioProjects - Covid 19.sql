@@ -67,7 +67,7 @@ order by 2
 -- Total Cases vs Population
 -- How many people are infected with covid
 
-Select Location, date, population,total_cases, (total_cases/population)*100 as InfPerc
+Select Location, date, population,total_cases, cast((total_cases/population)*100 as decimal(18,6)) as InfPerc 
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
 order by 1,2
@@ -75,17 +75,17 @@ order by 1,2
 -- Highest Infection Rate based on the Population size
 
 -- order by Highest Cases
-Select Location, date, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
+Select Location, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
-group by location, population, date
+group by location, population
 order by HighestCases Desc, HighestInfPerc Desc
 
 -- order by Highest Infected Percentage
-Select Location, date, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
+Select Location, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
-group by location, population, date
+group by location, population
 order by HighestInfPerc Desc, HighestCases Desc
 
 -- Highest Death Count based on the Population size
