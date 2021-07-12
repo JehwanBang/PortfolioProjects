@@ -91,19 +91,11 @@ order by HighestInfPerc Desc, HighestCases Desc
 -- Highest Death Count based on the Population size
 
 -- order by Highest Deaths Count
-Select Location, MAX(total_deaths) as HighestDeath, cast(max((total_deaths/total_cases))*100 as decimal(18,4)) as HighestMort
+Select Location, MAX(total_deaths) as HighestDeath
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
 group by location
-order by HighestDeath Desc, HighestMort Desc
-
--- order by Highest Mortality Rate
-Select Location, MAX(total_deaths) as HighestDeath, cast(max((total_deaths/total_cases))*100 as decimal(18,4)) as HighestMort
-From [Portfolio - Covid Cases]..CovidCases
-where continent is not null
-group by location
-order by HighestMort Desc, HighestDeath Desc
-
+order by HighestDeath Desc
 
 -- Based on 6 continents
 Select location, Sum(new_deaths) as HighestDeaths
@@ -180,6 +172,7 @@ where continent is not null
 and location not in ('World', 'European Union', 'International')
 Group by continent
 order by HighestTests desc
+
 
 -- Since new tests are performed every day but the test results come out like 1-3 days.(It was slower in the beginning like 2 weeeks)
 -- Direct calculation like new tests * positive rate may not be approciated. 
