@@ -75,14 +75,14 @@ order by 1,2
 -- Highest Infection Rate based on the Population size
 
 -- order by Highest Cases
-Select Location, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
+Select Location, date, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
 group by location, population
 order by HighestCases Desc, HighestInfPerc Desc
 
 -- order by Highest Infected Percentage
-Select Location, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
+Select Location, date, population,MAX(total_cases) as HighestCases, cast(max((total_cases/population))*100 as decimal(18,4)) as HighestInfPerc
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
 group by location, population
