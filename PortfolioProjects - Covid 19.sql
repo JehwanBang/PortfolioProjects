@@ -91,14 +91,14 @@ order by HighestInfPerc Desc, HighestCases Desc
 -- Highest Death Count based on the Population size
 
 -- order by Highest Deaths Count
-Select Location, MAX(total_deaths) as HighestDeath, cast(max((total_deaths/population))*100 as decimal(18,4)) as HighestMort
+Select Location, MAX(total_deaths) as HighestDeath, cast(max((total_deaths/total_cases))*100 as decimal(18,4)) as HighestMort
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
 group by location
 order by HighestDeath Desc, HighestMort Desc
 
 -- order by Highest Mortality Rate
-Select Location, MAX(total_deaths) as HighestDeath, cast(max((total_deaths/population))*100 as decimal(18,4)) as HighestMort
+Select Location, MAX(total_deaths) as HighestDeath, cast(max((total_deaths/total_cases))*100 as decimal(18,4)) as HighestMort
 From [Portfolio - Covid Cases]..CovidCases
 where continent is not null
 group by location
