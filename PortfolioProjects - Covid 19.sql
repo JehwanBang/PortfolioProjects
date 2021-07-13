@@ -288,6 +288,13 @@ where cas.continent is not null
 group by vac.location, vac.uniqueid, cas.continent, vac.date, vac.population, vac.people_fully_vaccinated
 order by 3,4
 
+-- New Vaccination Vs. New Case
+Select vac.uniqueid, cas.continent, vac.location, vac.date, vac.population,convert(decimal(18,4), (vac.new_vaccinations/vac.population)*100) as NewVac, convert(decimal(18,4), (cas.new_cases/vac.population)*100) as NewCas
+From [Portfolio - Covid Cases]..CovidCases cas
+Join [Portfolio - Covid Cases]..CovidVaccinations vac
+	On cas.UniqueID = vac.uniqueID
+where cas.continent is not null 
+order by 3,4
 
 
 
